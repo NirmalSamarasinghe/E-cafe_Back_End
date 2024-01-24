@@ -20,10 +20,10 @@ public class CustomerDb {
                 String lastCustomerId = resultSet.getString("last_customer_id");
                 System.out.println(lastCustomerId);
                 if (lastCustomerId == null){
-                    return "cust-0001";
+                    return "cust-001";
                 }else {
                     int nextId = Integer.parseInt(lastCustomerId.substring(5))+1;
-                    return "cust-" + String.format("%04d",nextId);
+                    return "cust-" + String.format("%03d",nextId);
                 }
             }
         } catch (SQLException e) {

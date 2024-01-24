@@ -3,12 +3,15 @@ package lk.ijse.pos_system_backend.Db;
 import lk.ijse.pos_system_backend.api.Item;
 import lk.ijse.pos_system_backend.dto.CustomerDTO;
 import lk.ijse.pos_system_backend.dto.ItemDTO;
+import lk.ijse.pos_system_backend.dto.OrderDetailsDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class ItemDb {
     public String generateItemCode(Connection connection){
@@ -22,10 +25,10 @@ public class ItemDb {
                 String lastItemCode = resultSet.getString("last_item_code");
                 System.out.println(lastItemCode);
                 if (lastItemCode == null){
-                    return "item-0001";
+                    return "item-001";
                 }else {
                     int nextId = Integer.parseInt(lastItemCode.substring(5))+1;
-                    return "item-" + String.format("%04d",nextId);
+                    return "item-" + String.format("%03d",nextId);
                 }
             }
 
@@ -121,5 +124,27 @@ public class ItemDb {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public boolean updateItemOrder(OrderDetailsDTO orderDetailsDTO, Connection connection) {
+        try {
+            String updateItemQtyQuery = "UPDATE Item SET qty = qty - ? WHERE itemCode = ?;";
+
+            PreparedStatement updateItemQtyStatement = connection.prepareStatement(updateItemQtyQuery);
+            updateItemQtyStatement.setInt(1, orderDetailsDTO.getQty());
+            updateItemQtyStatement.setString(2, orderDetailsDTO.getItem_id());
+
+            boolean result = updateItemQtyStatement.executeUpdate() != 0;
+            if (result) {
+//                logger.info("Item quantity updated successfully for order: {}", orderDetailsDTO.getOrder_id());
+            } else {
+//                logger.error("Failed to update item quantity for order: {}", orderDetailsDTO.getOrder_id());
+            }
+            return result;
+
+        } catch (SQLException e) {
+//            logger.error("Error updating item quantity for order", e);
+            throw new RuntimeException(e);
+        }
     }
 }
