@@ -1,9 +1,12 @@
 package lk.ijse.pos_system_backend.Db;
 
+import lk.ijse.pos_system_backend.api.Customer;
 import lk.ijse.pos_system_backend.api.Item;
 import lk.ijse.pos_system_backend.dto.CustomerDTO;
 import lk.ijse.pos_system_backend.dto.ItemDTO;
 import lk.ijse.pos_system_backend.dto.OrderDetailsDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class ItemDb {
+    private static final Logger logger = LoggerFactory.getLogger(ItemDb.class);
     public String generateItemCode(Connection connection){
         String sql = "SELECT MAX(itemCode) AS last_item_code FROM item;";
 

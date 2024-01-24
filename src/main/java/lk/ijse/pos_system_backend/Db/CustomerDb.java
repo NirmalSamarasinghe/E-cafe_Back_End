@@ -1,6 +1,9 @@
 package lk.ijse.pos_system_backend.Db;
 
+import lk.ijse.pos_system_backend.api.Customer;
 import lk.ijse.pos_system_backend.dto.CustomerDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerDb {
+    private static final Logger logger = LoggerFactory.getLogger(CustomerDb.class);
     public String generateCustomerId(Connection connection){
         String sql = "SELECT MAX(customerId) AS last_customer_id FROM customer;";
 

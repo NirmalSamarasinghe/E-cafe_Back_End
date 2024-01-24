@@ -1,8 +1,11 @@
 package lk.ijse.pos_system_backend.Db;
 
+import lk.ijse.pos_system_backend.api.Customer;
 import lk.ijse.pos_system_backend.dto.CombinedOrderDTO;
 import lk.ijse.pos_system_backend.dto.OrderDTO;
 import lk.ijse.pos_system_backend.dto.OrderDetailsDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import java.util.List;
 import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class OrderDB {
+    private static final Logger logger = LoggerFactory.getLogger(OrderDB.class);
     public boolean saveOrder(CombinedOrderDTO combinedOrderDTO, Connection connection) {
         try {
             connection.setAutoCommit(false);

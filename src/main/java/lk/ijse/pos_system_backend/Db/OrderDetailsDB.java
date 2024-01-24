@@ -1,6 +1,9 @@
 package lk.ijse.pos_system_backend.Db;
 
+import lk.ijse.pos_system_backend.api.Customer;
 import lk.ijse.pos_system_backend.dto.OrderDetailsDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class OrderDetailsDB {
+    private static final Logger logger = LoggerFactory.getLogger(OrderDetailsDB.class);
     public boolean saveOrderDetails(OrderDetailsDTO orderDetailsDTO, Connection connection) {
         try {
             String saveItem = "INSERT INTO OrderDetails (order_id, item_id, price, qty) VALUES (?, ?, ?, ?);";
