@@ -10,7 +10,7 @@ Follow the steps below to use the APIs in this collection:
 
 2. **Set Up the Environment:**
    - Open Postman.
-   - Import this collection in postman : [Java POS Collection](https://www.postman.com/supply-physicist-73840039/workspace/java-pos/collection/30946389-9ab2f581-2fd4-42f8-80c2-a58df65d2711?action=share&creator=32541800).
+   - Import this collection in postman : [Java POS Collection]([https://www.postman.com/supply-physicist-73840039/workspace/java-pos/collection/30946389-9ab2f581-2fd4-42f8-80c2-a58df65d2711?action=share&creator=32541800](https://elements.getpostman.com/redirect?entityId=30946474-f045d39d-8aed-40a3-94e9-ee3296bba3c4&entityType=collection)).
    - Create a new environment and configure the required variables (e.g., base URL).
 
 3. **Run the Requests:**
